@@ -3,7 +3,7 @@
   "execution": "trusted-worker",
   "id": "alias",
   "name": "alias",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Audit your agent skills across Claude Code, Codex and Gemini, clean up the ones you never use, and share a public profile of the ones you do.",
   "engines": {
     "orca": ">=1.4.248"
@@ -24,8 +24,8 @@
     "settings": [
       {
         "key": "agent",
-        "title": "Agent for clean up",
-        "description": "The agent that Clean up and Fix start in the focused workspace.",
+        "title": "Agent for fixing links",
+        "description": "The agent that Fix starts in the focused workspace. Clean up always uses Claude Code in Plan Mode.",
         "type": "string",
         "enum": [
           "claude",
@@ -39,6 +39,11 @@
         ],
         "default": "claude"
       }
+    ],
+    "hooks": [
+      {
+        "event": "agent.launch.before"
+      }
     ]
   },
   "capabilities": [
@@ -50,6 +55,9 @@
     },
     {
       "kind": "settings:own"
+    },
+    {
+      "kind": "terminal:send"
     }
   ],
   "cover": {

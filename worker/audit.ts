@@ -107,7 +107,7 @@ export const cleanUpPrompt = (file: string) => `Clean up the skills installed on
 4. Check agent instructions. Read the global instruction files (~/.claude/CLAUDE.md, ~/.codex/AGENTS.md) and the AGENTS.md or CLAUDE.md in each project the usage log shows. For each one, work out what the project is about and which installed skills fit it. Draft a short edit that names those skills and when to use them. Skip a file when it already covers this.
 5. Plan. Show me one table: duplicates to remove and which copy to keep, copies to consolidate into one with links, skills that were never used or not used in 90 days, and skills with an update. Give the exact command for each row. Then show each instruction file edit as a diff.
 
-Do not delete, move, update or edit anything until I approve the plan. I may approve only some rows or some edits. After I approve, make those changes. Then give me a short summary: how many skills were removed, how many were updated, which instruction files changed, and anything that failed or that you skipped, with the reason.`
+You are in Plan Mode, so you cannot change anything yet. When the plan is ready, submit it for my approval. I may approve only some rows or some edits. After I approve, make only those changes. Then give me a short summary: how many skills were removed, how many were updated, which instruction files changed, and anything that failed or that you skipped, with the reason.`
 
 export async function fixPrompt(): Promise<string> {
   const { broken } = await audit()

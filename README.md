@@ -5,7 +5,7 @@
 See which of your agent skills you actually use. alias counts every skill installed on this machine for Claude Code, Codex and Gemini, and how often each one ran.
 
 - **Most used and never used.** Counted from the logs your agents already keep. Nothing leaves your machine unless you share.
-- **Clean up.** Writes the audit to `~/.alias/setup.json` and starts an agent that reads it, finds duplicate, unused and outdated skills, and shows you a plan. It installs nothing. Nothing changes until you approve.
+- **Clean up.** Writes the audit to `~/.alias/setup.json` and starts Claude Code in Plan Mode. It reads the audit, finds duplicate, unused and outdated skills, and shows you a plan. Plan Mode cannot change files, so nothing changes until you approve. It installs nothing. Clean up needs Claude Code.
 - **Fix broken links.** Shows a command for each skill link that points to a missing folder, or hands them to an agent.
 - **Share a profile.** Puts your skill names and use counts on a public page at alias.computer. Link your X account if you want people to know it is you.
 

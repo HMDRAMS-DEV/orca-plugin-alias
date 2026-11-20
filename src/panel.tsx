@@ -192,8 +192,8 @@ export default function Panel() {
         </Collapsible>
       ) : null}
 
-      <Card title="Clean up" description="Starts an agent with this audit. It looks for duplicate, unused and outdated skills, and drafts AGENTS.md edits that point each project at the skills it needs. You get a plan first. Nothing changes until you approve it.">
-        <Row><Button tone="accent" onPress={() => void startAgent('clean-up')} disabled={!!working}>{working === 'clean-up' ? 'Starting…' : 'Clean up with an agent'}</Button></Row>
+      <Card title="Clean up" description="Starts an agent with this audit. It looks for duplicate, unused and outdated skills, and drafts AGENTS.md edits that point each project at the skills it needs. It plans in Claude Plan Mode, which cannot change files. Nothing changes until you approve the plan.">
+        <Row><Button tone="accent" onPress={() => void startAgent('clean-up')} disabled={!!working}>{working === 'clean-up' ? 'Starting…' : 'Audit your skills'}</Button></Row>
       </Card>
 
       <ShareCard d={d} />
