@@ -192,7 +192,7 @@ export default function Panel() {
         </Collapsible>
       ) : null}
 
-      <Card title="Clean up" description="Start an agent that finds duplicate and unused skills, keeps one copy of each skill and links it into every agent's folder, checks each skill for a newer version, and drafts edits to your AGENTS.md files. It shows you a plan and waits for your OK before it changes anything.">
+      <Card title="Clean up" description="Starts an agent with this audit. It looks for duplicate, unused and outdated skills, and drafts AGENTS.md edits that point each project at the skills it needs. You get a plan first. Nothing changes until you approve it.">
         <Row><Button tone="accent" onPress={() => void startAgent('clean-up')} disabled={!!working}>{working === 'clean-up' ? 'Starting…' : 'Clean up with an agent'}</Button></Row>
       </Card>
 

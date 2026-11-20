@@ -91,9 +91,17 @@ export async function linkX({ handle }: { handle: string | null }) {
   return { x }
 }
 
-export const CLEAN_UP = `Clean up the skills installed on this machine. Work in five steps and stop after the plan.
+// Writes the full scan next to the config, so the cleanup agent reads it and installs nothing.
+export function saveSetup(): string {
+  const file = path.join(os.homedir(), '.alias', 'setup.json')
+  fs.mkdirSync(path.dirname(file), { recursive: true })
+  fs.writeFileSync(file, JSON.stringify(scan(), null, 2), { mode: 0o600 })
+  return file
+}
 
-1. Audit. Run \`npx -y https://alias.computer/alias-skills.tgz audit --json\` and read the "setup" block. It lists every installed skill, how many times each was used, duplicates and broken links.
+export const cleanUpPrompt = (file: string) => `Clean up the skills installed on this machine. Work in five steps and stop after the plan.
+
+1. Read the audit. The alias plugin just wrote it to ${file}. It lists every installed skill, how many times each was used, duplicates and broken links. Do not download or install anything to redo it.
 2. Check for updates. For each skill, find where it came from (a git remote, a plugin marketplace, or a skills lock file) and check whether a newer version exists. Say so when you cannot tell.
 3. Consolidate. Claude Code reads ~/.claude/skills. Codex, Gemini CLI and Cursor read ~/.agents/skills (Gemini also ~/.gemini/skills, Codex also ~/.codex/skills). For each skill that exists as separate copies in these folders, or that one agent has and another agent that should have it lacks, propose one real copy in ~/.agents/skills with symlinks from the other agent folders. When copies differ, say which is newer and keep that one. Leave plugin, bundled and project skills where they are.
 4. Check agent instructions. Read the global instruction files (~/.claude/CLAUDE.md, ~/.codex/AGENTS.md) and the AGENTS.md or CLAUDE.md in each project the usage log shows. For each one, work out what the project is about and which installed skills fit it. Draft a short edit that names those skills and when to use them. Skip a file when it already covers this.
