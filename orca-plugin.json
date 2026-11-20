@@ -1,0 +1,31 @@
+{
+  "manifestVersion": 2,
+  "execution": "trusted-worker",
+  "id": "alias",
+  "name": "alias",
+  "version": "0.1.0",
+  "description": "Audit your agent skills across Claude Code, Codex and Gemini, clean up the ones you never use, and share a public profile of the ones you do.",
+  "engines": { "orca": ">=1.4.248" },
+  "pluginApi": 1,
+  "icon": "assets/icon.png",
+  "main": "worker/main.ts",
+  "contributes": {
+    "panels": [{ "id": "skills", "title": "Skill usage", "icon": "bar-chart-3", "entry": "src/panel.tsx", "ui": "components" }],
+    "settings": [
+      {
+        "key": "agent",
+        "title": "Agent for clean up",
+        "description": "The agent that Clean up and Fix start in the focused workspace.",
+        "type": "string",
+        "enum": ["claude", "codex", "gemini"],
+        "enumLabels": ["Claude Code", "Codex", "Gemini CLI"],
+        "default": "claude"
+      }
+    ]
+  },
+  "capabilities": [{ "kind": "workspace:read" }, { "kind": "agent:launch" }, { "kind": "settings:own" }],
+  "cover": { "path": "assets/cover.png", "alt": "alias counting how often each skill runs, next to the skill usage panel" },
+  "screenshots": [
+    { "path": "assets/screenshot.png", "alt": "The skill usage panel with most used skills, never used skills, clean up and a public profile", "caption": "Which skills you use, and which you never touch" }
+  ]
+}
